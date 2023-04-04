@@ -3,13 +3,18 @@ export default {
     name: "HomePage",
     data() {
         return {
-            message: "This is testing"
+            postLists: [],
         }
     },
-
+    methods: {
+        getPost() {
+            axios.get('http://localhost:8000/api/allPostList').then(response => {
+                this.postLists = response.data.post;
+                console.log(this.postLists);
+            });
+        }
+    },
     mounted() {
-        axios.get('http://localhost:8000/api/allPostList').then(response => {
-            console.log(response.data);
-        })
+        this.getPost();
     }
 };
