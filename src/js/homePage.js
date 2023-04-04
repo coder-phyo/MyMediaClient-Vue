@@ -4,6 +4,7 @@ export default {
     data() {
         return {
             postLists: [],
+            categoryLists: [],
         }
     },
     methods: {
@@ -18,9 +19,17 @@ export default {
                 }
                 this.postLists = response.data.post;
             });
+        },
+
+        getCategory() {
+            axios.get('http://localhost:8000/api/allCategory').then(response => {
+                console.log(response.data.category);
+            }).catch(e => console.log(e));
         }
+
     },
     mounted() {
         this.getPost();
+        this.getCategory();
     }
 };
