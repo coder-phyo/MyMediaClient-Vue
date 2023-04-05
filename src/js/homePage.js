@@ -5,6 +5,7 @@ export default {
         return {
             postLists: [],
             categoryLists: [],
+            searchKey: "",
         }
     },
     methods: {
@@ -24,9 +25,23 @@ export default {
         getCategory() {
             axios.get('http://localhost:8000/api/allCategory').then(response => {
                 this.categoryLists = response.data.category;
-
-                console.log(this.categoryLists);
             }).catch(e => console.log(e));
+        },
+
+        search() {
+            let search = {
+                key: this.searchKey
+            };
+            axios.post('http://localhost:8000/api/post/search', search).then(response => {
+                for (let i = 0; i < response.data.searchValue.length; i++) {
+                    if (response.data.searchValue[i].image === null) {
+                        response.data.searchValue[i].image = "http://localhost:8000/defaultImg/default-image.jpg";
+                    } else {
+                        response.data.searchValue[i].image = "http://localhost:8000/storage/postImage/" + response.data.searchValue[i].image;
+                    }
+                }
+                this.postLists = response.data.searchValue;
+            })
         }
 
     },

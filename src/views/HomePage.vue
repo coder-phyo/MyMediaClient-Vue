@@ -45,6 +45,12 @@
               </div>
               <div class="row">
                 <div class="col-12">
+               
+                      <div class="d-flex mb-4 col-3 offset-9 w-25">
+                          <input type="text" placeholder="Search" class="form-control" @keyup.enter="search()" v-model="searchKey" />
+                          <i class="fas fa-search special-tag fs-3 ms-2 mt-1" @click="search()"></i>
+                      </div>
+          
                   <!-- Nav Card -->
                   <div class="tab-content" id="nav-tabContent">
                     <!-- card one -->
