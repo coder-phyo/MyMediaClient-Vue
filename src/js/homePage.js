@@ -18,12 +18,14 @@ export default {
                     }
                 }
                 this.postLists = response.data.post;
-            });
+            }).catch(e => console.log(e));
         },
 
         getCategory() {
             axios.get('http://localhost:8000/api/allCategory').then(response => {
-                console.log(response.data.category);
+                this.categoryLists = response.data.category;
+
+                console.log(this.categoryLists);
             }).catch(e => console.log(e));
         }
 
