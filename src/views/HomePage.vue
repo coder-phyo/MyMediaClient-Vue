@@ -21,20 +21,22 @@
                           class="nav-item nav-link active"
                           id="nav-home-tab"
                           data-toggle="tab"
-                          href="details.htmlnav-home"
+                          href="#"
                           role="tab"
                           aria-controls="nav-home"
-                          aria-selected="true"
+                          aria-selected="true" 
+                          @click="categorySearch('')"
                           >All</a
                         >
                         <a v-for="(category,index) in categoryLists" :key="index"
                           class="nav-item nav-link"
                           id="nav-profile-tab"
                           data-toggle="tab"
-                          href="details.htmlnav-profile"
+                          href="#"
                           role="tab"
                           aria-controls="nav-profile"
                           aria-selected="false"
+                          @click="categorySearch(category.title)"
                           >{{category.title}}</a
                         >
                       </div>
@@ -62,7 +64,10 @@
                     >
                       <div class="whats-news-caption">
                       <div class="row">
-                         <div class="col-lg-6 col-md-6" v-for="(post,index) in postLists" :key="index">
+                        <div class="d-flex justify-content-center align-items-center" style="height:300px" v-if="postLists.length === 0">
+                          <h1 class="text-danger">There is no data!</h1>
+                        </div>
+                         <div class="col-lg-6 col-md-6" v-for="(post,index) in postLists" :key="index" v-else>
                             <div class="single-what-news mb-100">
                               <div class="what-img">
                                 <img
