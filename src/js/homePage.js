@@ -80,6 +80,15 @@ export default {
                 })
                 .catch((err) => console.log(err));
         },
+
+        newsDetails(id) {
+            this.$router.push({
+                name: 'newsDetails',
+                query: {
+                    newsId: id
+                }
+            })
+        }
     },
     mounted() {
         this.getPost();
