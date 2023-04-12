@@ -5,7 +5,7 @@
       <button class="btn bg-dark btn-sm" @click="login()">Login</button>
     </nav>
 
-    <div class="container col-5 shadow-sm p-5 my-5">
+    <div class="container col-5 shadow-sm p-5 my-5 bg-light">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input
@@ -25,7 +25,7 @@
           v-model="userData.password"
         />
       </div>
-      <button type="submit" class="btn btn-primary" @click="accountLogin()">Login</button>
+      <button type="submit" class="btn btn-primary" @click="accountLogin()">Login</button> <br>
     </div>
   </div>
 </template>
