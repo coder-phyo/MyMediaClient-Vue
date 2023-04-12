@@ -13,6 +13,7 @@
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          v-model="userData.email"
         />
       </div>
       <div class="mb-3">
@@ -21,9 +22,10 @@
           type="password"
           class="form-control"
           id="exampleInputPassword1"
+          v-model="userData.password"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" @click="accountLogin()">Login</button>
     </div>
   </div>
 </template>
