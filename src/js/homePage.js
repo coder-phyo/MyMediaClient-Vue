@@ -88,6 +88,18 @@ export default {
                     newsId: id
                 }
             })
+        },
+
+        home() {
+            this.$router.push({
+                name: 'home'
+            })
+        },
+
+        login() {
+            this.$router.push({
+                name: 'login'
+            })
         }
     },
     mounted() {

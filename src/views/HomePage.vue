@@ -1,5 +1,9 @@
 <template>
   <div>
+    <nav class="text-center py-3">
+      <button class="btn btn-danger btn-sm me-3" @click="home()">Home</button>
+      <button class="btn bg-dark btn-sm" @click="login()">Login</button>
+    </nav>
     <main>
       <!-- Whats New Start -->
       <section class="whats-news-area pt-50 pb-20">
