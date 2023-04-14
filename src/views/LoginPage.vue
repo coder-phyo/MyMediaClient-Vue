@@ -6,6 +6,13 @@
     </nav>
 
     <div class="container col-5 shadow-sm p-5 my-5 bg-light">
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        v-if="userStatus"
+      >
+        <strong>The Credential Do Not Match!</strong>
+      </div>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input
@@ -25,7 +32,10 @@
           v-model="userData.password"
         />
       </div>
-      <button type="submit" class="btn btn-primary" @click="accountLogin()">Login</button> <br>
+      <button type="submit" class="btn btn-primary" @click="accountLogin()">
+        Login
+      </button>
+      <br />
     </div>
   </div>
 </template>

@@ -6,8 +6,9 @@ export default {
         return {
             userData: {
                 email: "",
-                password: ""
-            }
+                password: "",
+            },
+            userStatus: false,
         }
     },
     computed: {
@@ -25,13 +26,14 @@ export default {
                 name: 'login'
             })
         },
-
         accountLogin() {
             axios.post("http://localhost:8000/api/user/login", this.userData).then(response => {
                 if (response.data.token === null) {
-                    console.log("There is no user");
+                    this.userStatus = true;
                 } else {
+                    this.userStatus = false;
                     this.storeUserInfo(response);
+                    this.home();
                 }
             }).catch(error => console.log(error));
         },
@@ -39,7 +41,6 @@ export default {
         storeUserInfo(response) {
             this.$store.dispatch("setToken", response.data.token);
             this.$store.dispatch("setUserData", response.data.user);
-            console.log("Token stored Success....");
         },
     }
 }

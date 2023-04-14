@@ -1,8 +1,9 @@
 <template>
   <div>
     <nav class="text-center py-3">
-      <button class="btn btn-danger btn-sm me-3" @click="home()">Home</button>
-      <button class="btn bg-dark btn-sm" @click="login()">Login</button>
+      <button class="btn btn-danger btn-sm me-3" @click="home()" v-if="!tokenStatus">Home</button>
+      <button class="btn bg-dark btn-sm" @click="login()" v-if="!tokenStatus">Login</button>
+      <button class="btn bg-dark btn-sm" @click="logout()" v-else>Logout</button>
     </nav>
     <main>
       <!-- Whats New Start -->
@@ -67,29 +68,32 @@
                       aria-labelledby="nav-home-tab"
                     >
                       <div class="whats-news-caption">
-                      <div class="row">
-                        <div class="d-flex justify-content-center align-items-center" style="height:300px" v-if="postLists.length === 0">
-                          <h1 class="text-danger">There is no data!</h1>
+                        <div v-if="!tokenStatus" class="text-center my-5 bg-danger p-4 rounded shadow">
+                          <h3 class="text-white">You don't have permission for that!</h3>
                         </div>
-                         <div class="col-lg-6 col-md-6" v-for="(post,index) in postLists" :key="index" v-else>
-                            <div class="single-what-news mb-100" @click="newsDetails(post.post_id)">
-                              <div class="what-img">
-                                <img
-                                  :src="post.image"
-                                  alt=""
-                                />
-                              </div>
-                              <div class="what-cap">
-                                <span class="color1">Code Lab News</span>
-                                <h4>
-                                  <a href="details.html"
-                                    >{{post.title}}</a
-                                  >
-                                </h4>
+                         <div class="row" v-else>
+                          <div class="d-flex justify-content-center align-items-center" style="height:300px" v-if="postLists.length === 0">
+                            <h1 class="text-danger">There is no data!</h1>
+                          </div>
+                           <div class="col-lg-6 col-md-6" v-for="(post,index) in postLists" :key="index" v-else>
+                              <div class="single-what-news mb-100" @click="newsDetails(post.post_id)">
+                                <div class="what-img">
+                                  <img
+                                    :src="post.image"
+                                    alt=""
+                                  />
+                                </div>
+                                <div class="what-cap">
+                                  <span class="color1">Code Lab News</span>
+                                  <h4>
+                                    <a href="details.html"
+                                      >{{post.title}}</a
+                                    >
+                                  </h4>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                      </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -103,7 +107,7 @@
       <!-- Whats New End -->
 
       <!--Start pagination -->
-      <div class="pagination-area pb-45 text-center">
+      <div class="pagination-area pb-45 text-center" v-if="tokenStatus">
         <div class="container">
           <div class="row">
             <div class="col-xl-12">

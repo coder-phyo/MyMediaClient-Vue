@@ -1,4 +1,5 @@
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
     name: "HomePage",
     data() {
@@ -6,7 +7,11 @@ export default {
             postLists: [],
             categoryLists: [],
             searchKey: "",
+            tokenStatus: false,
         };
+    },
+    computed: {
+        ...mapGetters(["storageToken", "storageUserData"]),
     },
     methods: {
         getPost() {
@@ -83,26 +88,43 @@ export default {
 
         newsDetails(id) {
             this.$router.push({
-                name: 'newsDetails',
+                name: "newsDetails",
                 query: {
-                    newsId: id
-                }
-            })
+                    newsId: id,
+                },
+            });
         },
 
         home() {
             this.$router.push({
-                name: 'home'
-            })
+                name: "home",
+            });
         },
 
         login() {
             this.$router.push({
-                name: 'login'
-            })
-        }
+                name: "login",
+            });
+        },
+
+        logout() {
+            this.$store.dispatch("setToken", null);
+            this.login();
+        },
+        checkToken() {
+            if (
+                this.storageToken !== null &&
+                this.storageToken !== undefined &&
+                this.storageToken !== ""
+            ) {
+                this.tokenStatus = true;
+            } else {
+                this.tokenStatus = false;
+            }
+        },
     },
     mounted() {
+        this.checkToken();
         this.getPost();
         this.getCategory();
     },
