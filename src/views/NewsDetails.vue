@@ -1,8 +1,9 @@
 <template>
   <div>
     <nav class="text-center py-3">
-      <button class="btn btn-danger btn-sm me-3" @click="home()">Home</button>
-      <button class="btn bg-dark btn-sm" @click="login()">Login</button>
+      <button class="btn btn-danger btn-sm me-3" @click="home()" v-if="!tokenStatus">Home</button>
+      <button class="btn bg-dark btn-sm" @click="login()" v-if="!tokenStatus">Login</button>
+       <button class="btn bg-dark btn-sm" @click="logout()" v-else>Logout</button>
     </nav>
     <main>
       <!-- About US Start -->
@@ -48,9 +49,7 @@
                     <h3 class="mr-20">Share:</h3>
                     <ul>
                       <li>
-                        <a href="#"
-                          ><img src="assets/img/news/icon-ins.png" alt=""
-                        /></a>
+                        <i class="fa-solid fa-eye fa-bounce fa-xl"></i> <span>{{viewCount}}</span>
                       </li>
                       <li>
                         <a href="#"
